@@ -1,0 +1,18 @@
+@startuml
+class Election {
+    - static Election instance
+    - int trumpVotes, bidenVotes
+    - Set<String> usersWhoVoted
+    - Election()
+    + static Election getInstance()
+    + void submitVote(String candidate, String user)
+    + void printResult()
+}
+class User{
+    - String name
+    + User(String name)
+    + void vote(String candidate)
+}
+User ..> Election
+
+@enduml

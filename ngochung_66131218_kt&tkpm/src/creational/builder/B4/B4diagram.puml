@@ -1,0 +1,22 @@
+@startuml
+class MonHoc{
+    - int SoTinChi
+    - double hocPhi
+}
+class NhomHocTap{
+    - List<KeHoachHocTap> danhSach
+    + void them(KeHoachHocTap kh)
+    + void xoa(KeHoachHocTap kh)
+
+
+}
+abstract class KeHoachHocTap{
+    + String ten
+    + {abstract} int tongSoTinChi()
+    + {abstract} double tongHocPhi()
+    + {abstract} String lietke(String prefix)
+}
+KeHoachHocTap <|-- MonHoc
+KeHoachHocTap <|-- NhomHocTap
+NhomHocTap --> KeHoachHocTap : quan ly (danh sach)
+@enduml

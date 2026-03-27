@@ -1,0 +1,22 @@
+@startuml
+class FileItem {}
+class Folder {
+    - List<AbstractFile> children
+    + void addItem(AbstractFile item)
+    + void removeItem(AbstractFile item)
+}
+abstract class AbstractFile {
+    # String name
+    # String ngayTao
+    # AbstractFile parent
+    + AbstractFile(String name, String ngayTao)
+    + void setParent(AbstractFile parent)
+    + {abstract} String getStringTreeFolder(String prefix)
+    + {abstract} String getPath()
+}
+
+AbstractFile <|-- FileItem
+AbstractFile <|-- Folder
+Folder --> AbstractFile : chua
+AbstractFile --> AbstractFile : Thuoc ve
+@enduml

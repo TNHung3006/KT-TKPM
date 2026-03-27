@@ -1,0 +1,21 @@
+@startuml
+class Book{
+    - String title, author
+    - int pages
+    - List<String> chapters
+    + Book(String t, String a, int p, List<dsChuong> c)
+    + String toString()
+}
+class BookBuilder{
+    - String title, author
+    - int pages
+    - list<String> chapters
+    + BookBuilder setTitle(String t)
+    + BookBuilder setAuThor(String a)
+    + BookBuilder setPageCount(int p)
+    + BookBuilder addChapters(String c)
+    + Book build()
+}
+
+BookBuilder ..> Book
+@enduml

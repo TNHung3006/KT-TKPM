@@ -1,0 +1,37 @@
+@startuml
+interface Listener{
+    + void update(T data)
+}
+
+class Stream {
+    - List<Listener> listeners
+    +void addListener(Listener l)
+    + void addEvent(T t)
+}
+
+class MonHoc{
+    - String maMon
+    - String tenMon
+    + MonHoc(String maMon, String tenMon)
+}
+class Client{
+    + void update(List danhSach)
+}
+
+class DataAccess{
+    - List danhSachMonHoc
+    - stream<List<MonHoc>> stream
+    + stream<List<MonHoc>> getStream()
+    + void themMonHoc(MonHoc mh)
+    + void capNhatMonHoc(String maMon, String tenMon)
+    + void xoaMonHoc(String maMon)
+
+}
+
+Stream --> Listener
+Client ..|> Listener
+DataAccess --> Stream
+DataAccess --> MonHoc
+Client ..> MonHoc
+
+@enduml

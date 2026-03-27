@@ -1,0 +1,46 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' Component Interface
+interface Tokenizer <<Component>> {
+    + tokenize() : List<String>
+}
+
+' Concrete Component
+class BasicTokenizer <<ConcreteComponent>> {
+    - text : String
+    + BasicTokenizer(text : String)
+    + tokenize() : List<String>
+}
+
+' Decorator
+abstract class TokenizerDecorator <<Decorator>> {
+    # wrapper : Tokenizer
+    + TokenizerDecorator(wrapper : Tokenizer)
+    + tokenize() : List<String>
+}
+
+' Concrete Decorator 1
+class StopWordRemover <<ConcreteDecorator>> {
+    - stopWords : List<String>
+    + StopWordRemover(wrapper : Tokenizer)
+    + tokenize() : List<String>
+}
+
+' Concrete Decorator 2
+class PunctuationRemover <<ConcreteDecorator>> {
+    + PunctuationRemover(wrapper : Tokenizer)
+    + tokenize() : List<String>
+}
+
+' Relationships
+BasicTokenizer .up.|> Tokenizer : implements
+TokenizerDecorator .up.|> Tokenizer : implements
+
+' Aggregation: Decorator has a wrapper of type Tokenizer
+TokenizerDecorator o--> Tokenizer : wrapper
+
+StopWordRemover -up-|> TokenizerDecorator : extends
+PunctuationRemover -up-|> TokenizerDecorator : extends
+
+@enduml

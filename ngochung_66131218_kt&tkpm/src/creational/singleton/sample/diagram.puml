@@ -1,0 +1,12 @@
+@startuml
+class Student{
+    - String name
+    + String getName()
+    # int age
+}
+
+HoaDon *-- CTHD
+ClassRoom o-- Student
+GiaoVien --> MonHoc
+User ..> MayIn
+@enduml

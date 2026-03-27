@@ -1,0 +1,29 @@
+@startuml
+class HoaDonHeader{
+    - String maHD, ngayban, tenKH
+    + HoaDonHeader(String ma, string ngay, string ten)
+}
+class CTHD{
+    - String sanPham
+    - int soLuong
+    - double donGia, chietKhau
+    + CTHD(String sp, int sl, double gia, double ck)
+}
+class HoaDon{
+    - HoaDonHeader header
+    - List<CTHD> list
+    + HoaDon(HoaDonHeader h, List<CTHD> l)
+}
+class HoaDonBuilder{
+    - HoaDonHeader currenHeader
+    - list<CTHD> currenList
+    + HoaDonBuilder setHeader(String ma, string ngay, string ten)
+    + HoaDonBuilder addChiTiet(String sp, int sl, double gia, double ck)
+    + HoaDon build()
+}
+
+HoaDonBuilder..>HoaDon
+HoaDon *-- "1"HoaDonHeader
+HoaDon *-- "*"CTHD
+
+@enduml

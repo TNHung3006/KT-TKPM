@@ -1,0 +1,44 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor #E0FFFF
+    ArrowColor #1E90FF
+    BorderColor #0000FF
+}
+skinparam note {
+    BackgroundColor #FFFFFF
+    BorderColor #0000FF
+}
+
+class Client {
+}
+
+interface INode {
+    + Traverse()
+}
+
+class LeafNode {
+    + data: int
+    + <<Implement>> Traverse()
+}
+
+class BinaryNode {
+    + data: int
+    + <<Implement>> Traverse()
+}
+
+Client -right-> INode
+
+INode <|.. LeafNode
+INode <|.. BinaryNode
+
+BinaryNode o-up-> INode : left
+BinaryNode o-up-> INode : right
+
+note bottom of BinaryNode
+  Traverse():
+  if (left != null) left.Traverse();
+  print(data);
+  if (right != null) right.Traverse();
+end note
+@enduml

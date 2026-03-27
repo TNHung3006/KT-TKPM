@@ -1,0 +1,16 @@
+@startuml
+
+class ChuTich
+class NhanVienChoVay
+abstract class NV_DuyetVay {
+    String ten, chucVu
+    int hanMuc
+    + {abstract}NV_DuyetVay capTren(NV_DuyetVay capTren)
+    + {abstract}void duyetVay(int soTien )
+}
+
+NV_DuyetVay <|-- ChuTich
+NV_DuyetVay <|-- NhanVienChoVay
+NV_DuyetVay <-- NhanVienChoVay : capTren
+
+@enduml
