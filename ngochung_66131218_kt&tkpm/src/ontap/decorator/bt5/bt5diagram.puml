@@ -1,0 +1,52 @@
+@startuml
+
+interface SanPham{
+    + double getGia()
+    + String getMoTa()
+}
+class BasicSanPham{
+    - String tensp
+    - double gia
+    - String moTa
+    + double getGia()
+    + String getMoTa()
+
+}
+class SanPhamDecorator{
+    # sanPham : SanPham
+}
+class ToppingDecorator{
+    - String tentopping
+    - double giatopping
+    + double getGia()
+    + String getMoTa()
+
+}
+class SotDecorator{
+    - String tenSot
+    - double giaSot
+    + double getGia()
+    + String getMoTa
+}
+
+class DonggoiDecorator{
+    + double getGia()
+    + String getMoTa()
+}
+
+class MagiamgiaDecorator{
+    - double phantram
+    + double getGia()
+    + String getMoTa()
+}
+
+SanPham <|.. BasicSanPham
+SanPham <|.. SanPhamDecorator
+SanPham <..o SanPhamDecorator : sanPham
+
+OptionDecorator <|-- ToppingDecorator
+OptionDecorator <|-- SotDecorator
+OptionDecorator <|-- DonggoiDecorator
+OptionDecorator <|-- MagiamgiaDecorator
+
+@enduml

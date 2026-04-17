@@ -1,0 +1,20 @@
+@startuml
+
+abstract class Nut{
+    int value
+    + {abstract} void Duyet();
+    + {abstract} void ThemTrai(Nut n);
+    + {abstract} void ThemPhai(Nut n);
+    + {abstract} void XoaNut();
+}
+
+class NutLa{}
+
+class NutTrong{}
+
+Nut <|-- NutLa
+Nut <|-- NutTrong
+Nut <--o NutTrong : Trai
+Nut <--o NutTrong : Phai
+
+@enduml

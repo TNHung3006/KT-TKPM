@@ -1,0 +1,19 @@
+@startuml
+class RemoteControl{
+    + RemteControl()
+    + void setState(IRemoteState state)
+    + void powerPress()
+}
+Interface IRemoteState{
+    + void handle(RemoteControl remote)
+}
+class OnState{
+    + void handle(RemoteControl remote)
+}
+
+class OffState{}
+
+RemoteControl --> IRemoteState : state
+IRemoteState <|.. OnState
+IRemoteState <|.. OffState
+@enduml

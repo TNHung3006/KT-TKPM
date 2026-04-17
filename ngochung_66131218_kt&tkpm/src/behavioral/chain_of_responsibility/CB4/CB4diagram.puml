@@ -1,0 +1,26 @@
+@startuml
+
+abstract class PrizeChecker{
+    # PrizeChecker nextChecker
+    + PrizeChecker setNextChecker(PrizeChecker nextChecker)
+    + {abstract} void checkTicket(String ticketNumber)
+
+}
+class StandardPrizeChecker{
+    - String prizeName
+    - String[] winningNumbers
+    + StandardPrizeChecker(String prizeName, String[] winningNumbers)
+    + void checkTicket(String (String ticketNumber)
+}
+class ConsolationPrizeChecker{
+    - String specialPrizeNumber
+    + ConsolationPrizeChecker(String specialPrizeNumber)
+    + void checkTicket(String checkTicket)
+}
+class Client{}
+PrizeChecker <|-- StandardPrizeChecker
+PrizeChecker <|-- ConsolationPrizeChecker
+PrizeChecker --> PrizeChecker : nextChecker
+Client ..> PrizeChecker : uses
+
+@enduml

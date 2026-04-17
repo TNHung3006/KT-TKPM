@@ -1,0 +1,39 @@
+@startuml
+
+interface TraSua{
+    + double TinhTien()
+}
+
+class TraSuaTruyenThong{
+    - double gia
+    + double TinhTien()
+}
+
+class ToppingDecorator{
+    + double TinhTien()
+}
+
+class TranChauDecorator{
+    - double gia
+    + double TinhTien()
+}
+
+class ThachTraiCayDecorator{
+    - double gia
+    + double TinhTien()
+}
+
+class KemCheeseDecorator{
+    - double gia
+    + double TinhTien()
+}
+
+TraSua <|.. TraSuaTruyenThong
+TraSua <|.. ToppingDecorator
+TraSua <..o ToppingDecorator : traSua
+
+ToppingDecorator <|-- TranChauDecorator
+ToppingDecorator <|-- ThachTraiCayDecorator
+ToppingDecorator <|-- KemCheeseDecorator
+
+@enduml

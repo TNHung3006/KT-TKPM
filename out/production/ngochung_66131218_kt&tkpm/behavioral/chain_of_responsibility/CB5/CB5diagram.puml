@@ -1,0 +1,19 @@
+@startuml
+abstract class GradeEvaluator{
+    # GradeEvaluator nextEvaluator
+    + GradeEvaluator setNextEvaluator(GradeEvaluator nextEvaluator)
+    + {abstract} void evaluate(double score)
+}
+class StandardGradeEvaluator{
+    - String gradeName
+    - double minScore
+    - double maxScore
+    - boolean isMaxInclusive
+    + StandardGradeEvaluator(String gradeName, double minScore, double maxScore, boolean isMaxInclusive)
+    +void evaluate(double score)
+}
+class Client{}
+GradeEvaluator <|-- StandardGradeEvaluator
+GradeEvaluator --> GradeEvaluator : nextEvaluator
+Client ..> GradeEvaluator : uses
+@enduml

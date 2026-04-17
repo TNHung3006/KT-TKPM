@@ -1,0 +1,56 @@
+@startuml
+
+interface SanPham{
+    + void getTen()
+    + double getGia()
+}
+
+class SanPhamCoBan{
+    - String ten
+    - double giaTien
+    - String moTa
+    + void getTen()
+    + double getGia()
+}
+
+class SanPhamDecorator{
+    + void getTen()
+    + double getGia()
+}
+
+class ThemTopping{
+    - String tenTopping
+    - String giaTopping
+    + void getTen()
+    + double getGia()
+}
+
+class ThemSot{
+    - String tenSot
+    - String giaSot
+    + void getTen()
+    + double getGia()
+}
+
+class DongGoi{
+    + void getTen()
+    + double getGia()
+}
+
+class MaGiamGia{
+    - String maGiamGia
+    + void getTen()
+    + double getGia()
+}
+
+SanPham <|.. SanPhamCoBan
+SanPham <|.. SanPhamDecorator
+SanPham <--o SanPhamDecorator : sanPham
+
+SanPhamDecorator <|-- ThemTopping
+SanPhamDecorator <|-- ThemSot
+SanPhamDecorator <|-- DongGoi
+SanPhamDecorator <|-- MaGiamGia
+
+
+@enduml

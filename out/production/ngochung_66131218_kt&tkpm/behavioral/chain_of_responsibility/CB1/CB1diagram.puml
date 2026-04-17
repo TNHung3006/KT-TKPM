@@ -1,0 +1,21 @@
+@startuml
+abstract class MoneyDispenser{
+    # MoneyDispenser nextDispenser
+    + void setNextDispenser(MoneyDispenser nextDispenser)
+    + {abstract} void dispense(int amout)
+}
+class DenominationDispenser{
+    - int denomination
+    + DenominationDispenser(int denomination)
+    + void dispense(int amount)
+}
+class Client{}
+
+class ATM_Machine{
+    + MoneyDispenser getDispenserChain(int maxDenomination)
+}
+MoneyDispenser <|-- DenominationDispenser
+MoneyDispenser --> MoneyDispenser : nextDispenser
+ATM_Machine ..> MoneyDispenser : creates chain
+Client ..> ATM_Machine : uses
+@enduml

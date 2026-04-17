@@ -1,0 +1,38 @@
+@startuml
+
+interface Image{
+    + Show()
+}
+
+class BasicImage{
+    + Show()
+}
+
+class ImageDecorator{
+    + Show()
+}
+
+class BorderDecorator{
+    + Show()
+    + AddBorder()
+}
+
+class WatermarkDecorator{
+    + AddWatermark()
+    + Show()
+}
+
+class FilterDecorator{
+    + AddFilter()
+    + Show()
+}
+
+Image <|.. BasicImage
+Image <|.. ImageDecorator
+Image <..o ImageDecorator : component
+
+ImageDecorator <|-- BorderDecorator
+ImageDecorator <|-- WatermarkDecorator
+ImageDecorator <|-- FilterDecorator
+
+@enduml

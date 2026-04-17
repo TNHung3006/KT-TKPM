@@ -1,0 +1,18 @@
+@startuml
+
+abstract class FileSystemComponent{
+    String name
+    + {abstract} void GetName()
+    + {abstract} void GetSize()
+    + {abstract} void disPlay()
+}
+
+class FileComponent{}
+
+class FolderComposite{}
+
+FileSystemComponent <|-- FileComponent
+FileSystemComponent <|-- FolderComposite
+FileSystemComponent <--o FolderComposite : fileSystem
+
+@enduml
