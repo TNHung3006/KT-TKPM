@@ -1,0 +1,32 @@
+@startuml
+
+abstract class Builder{
+    - String title, message, icon, sound, priority, actionButtons
+    + {abstract} Builder BuildTitle(String title)
+    + {abstract} Builder BuildMessage(String message)
+    + {abstract} Builder BuildIcon(String icon)
+    + {abstract} Builder BuildSound(String Sound)
+    + {abstract} Builder BuildPriority(String priority)
+    + {abstract} Builder BuildActionButtons(String actionButtons)
+    + {abstract} Notification getResult();
+}
+
+class Notification{
+    - String title, message, icon, sound, priority, action buttons
+    + void Show()
+}
+
+class ConcreteBuilder{
+    + Builder BuildTitle(String title)
+    + Builder BuildMessage(String message)
+    + Builder BuildIcon(String icon)
+    + Builder BuildSound(String Sound)
+    + Builder BuildPriority(String priority)
+    + Builder BuildActionButtons(String actionButtons)
+    + void Notification getResult();
+}
+
+Builder <|-- ConcreteBuilder
+ConcreteBuilder ..> Notification : build
+
+@enduml

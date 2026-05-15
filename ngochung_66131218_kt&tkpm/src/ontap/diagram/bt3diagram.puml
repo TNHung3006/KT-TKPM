@@ -1,0 +1,32 @@
+@startuml
+
+class Notification{
+    - String tieude, thongbao, bieutuong, amthanh, douutien, nuthanhdong
+    + void Show()
+}
+
+abstract class Builder{
+    String tieude, thongbao, bieutuong, amthanh, douutien, nuthanhdong
+    + {abstract} Builder BuildTieude(String tieude)
+    + {abstract} Builder BuildThongBao(String thongbao)
+    + {abstract} Builder BuildBieuTuong(String bieutuong)
+    + {abstract} Builder BuildAmthanh(String amthanh)
+    + {abstract} Builder BuildDouutien(String douutien)
+    + {abstract} Builder BuildNuthanhdong(String nuthanhdong)
+    + Notification GetResult()
+}
+
+class ConcreteBuilder{
+    + Builder BuildTieude(String tieude)
+    + Builder BuildThongBao(String thongbao)
+    + Builder BuildBieuTuong(String bieutuong)
+    + Builder BuildAmthanh(String amthanh)
+    + Builder BuildDouutien(String douutien)
+    + Builder BuildNuthanhdong(String nuthanhdong)
+    + Notification GetResult()
+}
+
+Builder <|-- ConcreteBuilder
+ConcreteBuilder ..> Notification
+
+@enduml

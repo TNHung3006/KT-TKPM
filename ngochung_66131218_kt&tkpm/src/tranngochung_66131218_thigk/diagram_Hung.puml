@@ -1,0 +1,41 @@
+@startuml
+
+abstract class ToaNha_HUNG{
+    String tenThietBi_Hung
+    String trangThai_Hung
+    double congSuat_Hung
+
+    + {abstract} void getThongTin_Hung()
+    + {abstract} double getCongSuat_Hung()
+    + {abstract} void Add_Hung(ToaNha_Hung n)
+    + {abstract} void Remove_Hung(ToaNha_Hung n)
+
+}
+
+class KhuVuc_Hung{
+    - String tenkhuvuc_Hung
+}
+
+class ThietBi_Hung{}
+
+class CanhBao_Hung{}
+
+class HienThiPhanTram_Hung{
+    - String phanTram_Hung
+}
+
+class BoSungThongTin_Hung{
+    - String mota
+}
+
+ToaNha_HUNG <|-- ThietBi_Hung
+ToaNha_HUNG <|-- KhuVuc_Hung
+ToaNha_HUNG <--o KhuVuc_Hung : toanha
+
+KhuVuc_Hung <|-- CanhBao_Hung
+KhuVuc_Hung <|-- HienThiPhanTram_Hung
+KhuVuc_Hung <|-- BoSungThongTin_Hung
+
+
+
+@enduml

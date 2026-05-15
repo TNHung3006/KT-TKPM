@@ -1,0 +1,43 @@
+@startuml
+
+class MatHang{
+    - String tenMatHang
+    - int soLuong
+    - double donGia
+    + MatHang(String ten, int sl, double gia)
+    + double getThanhTien()
+    + String toString()
+}
+interface IThanhToan{
+    + double tinhTienGiam(double tongTienHang)
+}
+class IThanhToanCOD implements IThanhToan{}
+
+class ThanhToanAirpay implements IThanhToan{}
+
+class ThanhToanMasterCard implements IThanhToan{}
+
+interface IKhuyenMai{
+    + double tinhTienKhuyenMai(double tongTienHang)
+}
+class KhuyenMaiPhanTramGiamToiDa implements IKhuyenMai{
+    - double phanTranGiam
+    - double mucGiamToiDa
+    + KhuyenMaiPhanTramGiamToiDa(double phanTran, double toida)
+}
+
+class GioHang{
+    - List <MatHang> dsMatHang
+    - IThanhToan hinhThucThanhToan
+    - IKhuyenMai hinhThucKhuyenMai
+    + void setHinhThucThanhToan(IThanhToan ht)
+    + void setHinhThucKhuyenMai(IKhuyenMai km)
+    + void themMatHang(MatHang mh)
+}
+
+GioHang o-> IThanhToan : hinhThucThanhToan
+GioHang o-> IKhuyenMai : hinhThucKhuyenMai
+GioHang --> MatHang
+
+
+@enduml

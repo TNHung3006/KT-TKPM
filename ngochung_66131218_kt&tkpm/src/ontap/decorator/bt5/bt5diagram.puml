@@ -26,7 +26,7 @@ class SotDecorator{
     - String tenSot
     - double giaSot
     + double getGia()
-    + String getMoTa
+    + String getMoTa()
 }
 
 class DonggoiDecorator{
@@ -44,9 +44,9 @@ SanPham <|.. BasicSanPham
 SanPham <|.. SanPhamDecorator
 SanPham <..o SanPhamDecorator : sanPham
 
-OptionDecorator <|-- ToppingDecorator
-OptionDecorator <|-- SotDecorator
-OptionDecorator <|-- DonggoiDecorator
-OptionDecorator <|-- MagiamgiaDecorator
+SanPhamDecorator <|-- ToppingDecorator
+SanPhamDecorator <|-- SotDecorator
+SanPhamDecorator <|-- DonggoiDecorator
+SanPhamDecorator <|-- MagiamgiaDecorator
 
 @enduml

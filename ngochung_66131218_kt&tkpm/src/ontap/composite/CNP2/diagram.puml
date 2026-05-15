@@ -1,0 +1,21 @@
+@startuml
+
+abstract class Nut{
+    int giaTri;
+    + {abstract} void getGiaTri()
+    + {abstract} void ThemTrai(Nut n)
+    + {abstract} void ThemPhai(Nut n)
+    + {abstract} void XoaTrai()
+    + {abstract} void XoaPhai()
+}
+
+class NutLa{}
+
+class NutTrong{}
+
+Nut <|--NutLa
+Nut <|--NutTrong
+Nut <--o NutTrong : trai
+Nut <--o NutTrong : phai
+
+@enduml

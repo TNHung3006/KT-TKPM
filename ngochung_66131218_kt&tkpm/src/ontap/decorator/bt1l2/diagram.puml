@@ -1,0 +1,39 @@
+@startuml
+
+interface Image{
+    + void Show()
+}
+
+class BasicImage{
+    + void Show()
+}
+
+class ImageDecorator{
+    + void Show()
+}
+
+class BorderDecorator{
+    + void Show()
+    + void AddBorder()
+
+}
+
+class WatermarkDecorator{
+    + void Show()
+    + void AddWatermark()
+}
+
+class FilterDecorator{
+    + void Show()
+    + void AddFilterDecorator
+}
+
+Image <|.. BasicImage
+Image <|.. ImageDecorator
+Image <--o ImageDecorator : image
+
+ImageDecorator <|-- BorderDecorator
+ImageDecorator <|-- WatermarkDecorator
+ImageDecorator <|-- FilterDecorator
+
+@enduml

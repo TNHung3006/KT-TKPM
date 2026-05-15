@@ -1,0 +1,21 @@
+@startuml
+
+abstract class Menu{
+    String ten, moTa
+    double gia
+    + {abstract} void getMota();
+    + {abstract} double getGia();
+    + {abstract} void Add(Menu n);
+    + {abstract} void Remove(Menu n);
+
+}
+
+class Dish{}
+
+class ComBo{}
+
+Menu <|-- Dish
+Menu <|-- ComBo
+Menu <--o ComBo : children
+
+@enduml
