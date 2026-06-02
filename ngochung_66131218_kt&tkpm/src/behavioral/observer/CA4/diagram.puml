@@ -1,0 +1,41 @@
+@startuml
+
+interface ISubject{
+    + void dangKy(IObserver observer)
+    + void huydDangKy( IObserver observer)
+    + void thongBaoTinMoi(TinTuc tin)
+    + void thongBaoCapNhat(TinTuc tin)
+}
+interface IObserver{
+    + void NhanTinMoi(TinTuc tin)
+    + void nhanTinCapNhat(TinTuc tin)
+}
+class Topic implements ISubject{
+    - List<IObserver> danhSachThanhVien
+    - List<TinTuc> danhSachTin
+    - int idCounter
+    + void taoTinMoi(String noiDung)
+    + void capNhatTin(int idTin, String noiDungMoi)
+}
+class TinTuc{
+    - int id
+    - String noiDung
+    + int getId()
+    + String getNoiDung()
+    + void setNoiDung(String noiDung)
+    + TinTuc copy()
+}
+class ThanhVienA implements IObserver{
+    - String ten
+    + ThanhVienA(String ten)
+}
+
+class ThanhVienB implements IObserver{
+    - String ten
+    + ThanhVienB(String ten)
+    - List<TinTuc> danhSachTinNhanDuoc
+}
+Topic o-->IObserver : notifies >
+Topic *--> TinTuc : Manages >
+ThanhVienB *--> TinTuc : maintains history
+@enduml

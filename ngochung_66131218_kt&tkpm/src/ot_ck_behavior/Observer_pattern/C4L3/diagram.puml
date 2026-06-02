@@ -1,0 +1,45 @@
+@startuml
+
+interface ISubject{
+    + void dangKy(IObserver observer)
+    + void huyDangKy(IObserver observer)
+    + void thongBaoTinMoi(Tin tin)
+    + void thongBaoCapNhat(Tin tin)
+}
+interface IObserver{
+    + void nhanTinMoi(Tin tin)
+    + void nhanTinCapNhat(Tin tin)
+}
+
+class Topic implements ISubject{
+    + void taoTinMoi(String noiDung)
+    + void capNhatTin(int idTin, String noiDungMoi)
+    - int idCounter
+    - List<IObserver> danhSachThanhVien
+    - List<Tin> DanhSachTin
+}
+
+class TVA implements IObserver{
+    - String ten
+    + TVA(String ten)
+}
+class TVB implements IObserver{
+    - String ten
+    + TVB(String ten)
+    - List<Tin> danhSachTinNhanDuoc
+}
+
+class Tin{
+    - int id
+    - String noiDung
+    + int getId()
+    + String getNoiDung()
+    + void setNoiDung(String noiDung)
+    + Tin copy()
+}
+
+Topic o--> IObserver : notify
+Topic *--> Tin
+TVB *--> Tin
+
+@enduml

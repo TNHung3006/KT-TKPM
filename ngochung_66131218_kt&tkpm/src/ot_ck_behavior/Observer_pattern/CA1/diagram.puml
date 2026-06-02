@@ -1,0 +1,37 @@
+@startuml
+
+interface Listener<T> {
+    + void onEvent(T t)
+}
+
+class MyStream<T> {
+    - List<Listener<T>> listeners
+    + void addListener(Listener<T> l)
+    + void addEvent(T t)
+}
+
+class MonHoc {
+    - String maMH
+    - String tenMH
+    + MonHoc(String maMH, String tenMH)
+    + String toString()
+}
+
+class Client implements Listener {
+    + void onEvent(List<MonHoc> danhSach)
+}
+
+class MonHocRepository {
+    - List<MonHoc> database
+    - MyStream<List<MonHoc>> stream
+    + MonHocRepository(MyStream<List<MonHoc>> stream)
+    + void themMonHoc(MonHoc mh)
+    + void xoaMonHoc(String maMH)
+}
+
+MyStream o--> Listener : notifies >
+MonHocRepository *--> MyStream : contains >
+MonHocRepository *--> MonHoc : manages >
+Client ..> MonHoc : displays >
+
+@enduml

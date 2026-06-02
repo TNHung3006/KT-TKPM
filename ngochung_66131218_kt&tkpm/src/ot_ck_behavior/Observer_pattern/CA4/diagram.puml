@@ -1,0 +1,50 @@
+@startuml
+
+interface IObserver{
+    + void nhanTinMoi(TinTuc tin)
+    + void nhanTinCapNhat(TinTuc tin)
+}
+interface ISubject{
+    + void dangKy(IObserver observer)
+    + void huyDangKy(IObserver observer)
+    + void thongBaoTinMoi(TinTuc tin)
+    + void thongBaoCapNhat(TinTuc tin)
+}
+class Topic implements ISubject{
+    - List <IObserver> danhSachThanhVien
+    - List <TinTuc> danhSachTin
+    - int idCounter
+    + void taoTinMoi(String noiDung)
+    + void capNhatTin(int idTin, String noiDungMoi)
+
+}
+class TinTuc{
+    - int id
+    - String noiDung
+    + int getId()
+    + String getNoiDung()
+    + void setNoiDung(String noiDung)
+    + TinTuc copy()
+}
+class ThanhVienA implements IObserver{
+    - String ten
+    + ThanhVienA(String ten)
+}
+class ThanhVienB implements IObserver{
+    - String ten
+    - List<TinTuc> danhSachTinNhanDuoc
+    + ThanhVienB(String ten)
+}
+'o--> : Chứa, nhưng độc lập
+'*--> : Chứa và sống còn
+
+' Topic chứa danh sách Observer (Hình thoi rỗng vì Observer độc lập)
+Topic o--> IObserver : notifies >
+
+' Topic chứa danh sách TinTuc (Hình thoi đặc vì Topic quản lý vòng đời của tin)
+Topic *--> TinTuc : manages >
+
+' ThanhVienB chứa danh sách TinTuc lịch sử của riêng nó (Hình thoi đặc)
+ThanhVienB *--> TinTuc : maintains history >
+
+@enduml

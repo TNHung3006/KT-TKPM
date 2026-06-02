@@ -1,0 +1,29 @@
+@startuml
+
+class HoaDon{
+    - String maKH
+    - String tenKH
+    - double tongSoKhoi
+    - double tongTien
+    - List<String> chiTietTungBac
+    + HoaDon(String maKH, String tenKH, double tongSoKhoi)
+    + void conTien(double tien)
+    + void themChiTiet(String chiTiet)
+    + void inHoaDon()
+}
+abstract class TinhTienHandler{
+    #TinhTienHandler capTiepTheo
+    + TinhTienHanler setCapTiepTheo(TinhTienHandler capTiepTheo)
+    + void {abstract} tinhTien(double soKhoiConLai, HoaDon hoaDon)
+
+}
+
+class TinhTienBac1 extends TinhTienHandler{}
+class TinhTienBac2 extends TinhTienHandler{}
+class TinhTienBac3 extends TinhTienHandler{}
+class TinhTienBac4 extends TinhTienHandler{}
+
+TinhTienHandler o--> TinhTienHandler : next
+HoaDon <.. TinhTienHandler : modifies
+
+@enduml
